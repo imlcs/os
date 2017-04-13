@@ -1,4 +1,5 @@
 #!/bin/bash
+#
 LOG_PATH='/usr/local/nginx/logs/' #日志的路径
 EXPIRED=30                       #保存30天前的日志
 PID='/usr/local/nginx/logs/nginx.pid'    #httpd pid路径
