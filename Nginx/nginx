@@ -6,7 +6,6 @@
 #               proxy and IMAP/POP3 proxy server
 # processname: nginx
 # config:      /usr/local/nginx/conf/nginx.conf
-# pidfile:     /var/run/nginx.pid
 
 # Source function library.
 . /etc/rc.d/init.d/functions
@@ -19,6 +18,7 @@
 
 nginx="/usr/local/nginx/sbin/nginx"
 prog=$(basename $nginx)
+pidfile="/usr/local/nginx/logs/nginx.pid"
 
 NGINX_CONF_FILE="/usr/local/nginx/conf/nginx.conf"
 
@@ -45,15 +45,18 @@ make_dirs() {
 }
 
 start() {
-    [ -x $nginx ] || exit 5
-    [ -f $NGINX_CONF_FILE ] || exit 6
-    make_dirs
-    echo -n $"Starting $prog: "
-    daemon $nginx -c $NGINX_CONF_FILE
-    retval=$?
-    echo
-    [ $retval -eq 0 ] && touch $lockfile
-    return $retval
+    status $prog
+    if [ $? != 0 ]; then
+    	[ -x $nginx ] || exit 5
+	[ -f $NGINX_CONF_FILE ] || exit 6
+    	#make_dirs
+    	echo -n $"Starting $prog: "
+    	daemon $nginx -c $NGINX_CONF_FILE
+    	retval=$?
+    	echo
+    	[ $retval -eq 0 ] && touch $lockfile
+    	return $retval
+    fi
 }
 
 stop() {
@@ -98,7 +101,7 @@ rh_status_q() {
 
 case "$1" in
     start)
-        rh_status_q && exit 0
+        start && exit 0
         $1
         ;;
     stop)
