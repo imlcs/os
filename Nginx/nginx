@@ -22,8 +22,6 @@ pidfile="/usr/local/nginx/logs/nginx.pid"
 
 NGINX_CONF_FILE="/usr/local/nginx/conf/nginx.conf"
 
-[ -f /etc/sysconfig/nginx ] && . /etc/sysconfig/nginx
-
 lockfile=/var/lock/subsys/nginx
 
 make_dirs() {
