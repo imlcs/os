@@ -1,0 +1,27 @@
+#!/bin/bash
+# Tomcat init script for linux
+#
+# chkconfig 2345 85 15
+# description: The Apache Tomcat servlet/Jsp container.
+
+. /etc/init.d/functions
+
+# JAVA_OPYS="-Xms64m -Xmx128m" #JVM使用内存大小
+JAVA_HOME=/usr/java/latest
+CATALINA_HOME=/usr/local/tomcat
+
+if [ "$1" == 'restart' ];then
+	echo "Stoping Tomcat......"
+	$CATALINA_HOME/bin/catalina.sh stop &>/dev/null
+	sleep 2
+	$CATALINA_HOME/bin/catalina.sh start &>/dev/null
+	sleep 1
+	res=$(ss -anptl | grep -q java)
+	if [[ $res -eq 0 ]];then
+		action "Tomcat start successful!"
+	else
+		action "Tomcat start falid!" false
+	fi
+else
+	$CATALINA_HOME/bin/catalina.sh $1
+fi
