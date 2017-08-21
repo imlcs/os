@@ -13,4 +13,4 @@ do
     #$MYDUMP $database | gzip >/data/backup/$(date +%F)/${database}_$(date +%F).bak.gz
     $MYDUMP $database | gzip >/data/backup/$(date +%F)/${database}.bak.gz
 done
-find $PWD -type f -mtime +${EXPIRED} -exec rm -fr {}
+find $PWD -type d  -mtime +${EXPIRED} -exec rm -rf {} \;
