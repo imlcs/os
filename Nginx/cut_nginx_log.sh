@@ -18,5 +18,5 @@ mv ${log} ${LOG_PATH}oldlog/${datetime}"."${fname}
 done
  
 kill -USR1 $(cat ${PID})
-find ${LOG_PATH}oldlog -type f -mtime +${EXPIRED} -exec rm -f {}
+find ${LOG_PATH}oldlog -type f -mtime +${EXPIRED} -exec rm -f {} \;
 sleep 5
