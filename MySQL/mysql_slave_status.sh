@@ -21,7 +21,7 @@ else
   	echo "Slave is not running!" >>    /tmp/check_mysql_slave.log
     ctrl=$(cat /tmp/mysql_slave_ctrl)
     if [ $ctrl -eq 1 ];then
-  	    echo "Slave is not running!" | mail -s "warn! $MYSQLIP MySQL Slave is not running" 992874270@qq.com
+  	    echo "Slave is not running!" | mail -s "warn! $MYSQLIP MySQL Slave is not running" xxx@qq.com
     fi
     echo "0" >/tmp/mysql_slave_ctrl
 fi
