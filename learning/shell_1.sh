@@ -1,4 +1,4 @@
-1.if/elif/fiÑ¡Ôñ·ÖÖ§
+1.if/elif/fié€‰æ‹©åˆ†æ”¯
 	#!/bin/bash
 	read -p "Pls. input a number:" num
 	if [ $num -lt 0 ]
@@ -10,7 +10,7 @@
 	else
 		echo "This is zero."
 	fi
-2.forÑ­»·
+2.forå¾ªç¯
 	#!/bin/bash
 	sum=0
 	for  ((i=1;i<=100;i=i++))
@@ -19,7 +19,7 @@
 	done
 	echo    "1+2+3+....+100=$sum"
  
-3.	whileÑ­»·
+3.	whileå¾ªç¯
 	#!/bin/bash
 	i=1
 	sum=0
@@ -29,9 +29,9 @@
 	i=$(( $i+1 ))
 	done
 	echo    "1+2+3+....+100=$sum"
-4.	untilÑ­»·
+4.	untilå¾ªç¯
 	#!/bin/bash
-	#2016Äê 09ÔÂ 06ÈÕ ĞÇÆÚ¶ş 16:45:22 CST
+	#2016å¹´ 09æœˆ 06æ—¥ æ˜ŸæœŸäºŒ 16:45:22 CST
 	num=1
 	sum=0
 	until [ $num -gt 100 ]
@@ -41,9 +41,9 @@
 	done
 	echo "1+2+3+...+100=$sum"
  
-5.	case½á¹¹
+5.	caseç»“æ„
 	#!/bin/bash
-	#2016Äê 09ÔÂ 06ÈÕ ĞÇÆÚ¶ş 16:51:08 CST
+	#2016å¹´ 09æœˆ 06æ—¥ æ˜ŸæœŸäºŒ 16:51:08 CST
 
 	read -p "Pls. input (A-E):" score
 	case $score in 
@@ -61,9 +61,9 @@
 			echo "Input is error, Pls. again input !" ;;
 	esac
  
-6.	select½á¹¹
+6.	selectç»“æ„
 	#!/bin/bash
-	#2016Äê 09ÔÂ 06ÈÕ ĞÇÆÚ¶ş 16:51:08 CST
+	#2016å¹´ 09æœˆ 06æ—¥ æ˜ŸæœŸäºŒ 16:51:08 CST
 	echo "Pls. choose your score:"
 	select score in A B C D E
 	do
@@ -83,25 +83,31 @@
 		*)
 			echo "Input is error, Pls. again input !" ;;
 	esac
-7.	Êı×éµÄ±éÀú
+7.	æ•°ç»„çš„éå†
 	#!/bin/bash
-	#2016Äê 09ÔÂ 06ÈÕ ĞÇÆÚ¶ş 15:56:04 CST
+	#2016å¹´ 09æœˆ 06æ—¥ æ˜ŸæœŸäºŒ 15:56:04 CST
 	for i in `seq 0 10`
 	do
 		arr[$i]="user$i"
 	done
-#Êı×éµÄ±éÀú·½·¨Ò»£º
-	#for name in ${arr[*]}
-	#do
-		#echo $name
-	#done
-#Êı×éµÄ±éÀú·½·¨¶ş£º
+	#æ•°ç»„çš„èµ‹å€¼
+	a=0
+	for b in 0 1 2 ;do 
+    		arr[${a}]=$b
+    		a=$((a + 1))
+	done
+	#æ•°ç»„çš„éå†æ–¹æ³•ä¸€ï¼š
+	for name in ${arr[*]}
+	do
+		echo $name
+	done
+	#æ•°ç»„çš„éå†æ–¹æ³•äºŒï¼š
 	for (( i=0;i<${#arr[*]};i++ ))
 	do
 		echo ${arr[$i]}
 	done
  
-8.	Ñ­»·µÄÇ¶Ì×£¨´òÓ¡ÕıÈı½ÇĞÎ£©
+8.	å¾ªç¯çš„åµŒå¥—ï¼ˆæ‰“å°æ­£ä¸‰è§’å½¢ï¼‰
 	#!/bin/bash
 	m=8
 	n=8
@@ -122,7 +128,7 @@
 		[ $m -eq 0 ] && break
 	done
  
-9.	º¯ÊıµÄ¶¨ÒåÓëÓ¦ÓÃ
+9.	å‡½æ•°çš„å®šä¹‰ä¸åº”ç”¨
 		#!/bin/bash
 		function sm () {
                 sum=0
@@ -143,22 +149,22 @@
 			echo "$aa is not number! "
 		fi
 
-10.	²ÂÊıÓÎÏ·
+10.	çŒœæ•°æ¸¸æˆ
 	#!/bin/bash
-	echo "²ÂÊıÓÎÏ·(1-100)Ö®¼ä£º"
+	echo "çŒœæ•°æ¸¸æˆ(1-100)ä¹‹é—´ï¼š"
 	while true
 	do
 		num=`expr $RANDOM % 100`
 		i=1
 		while [ $i -eq 1 ]
 		do
-			read -p "ÇëÊäÈëÉÌÆ·¼Û¸ñ£º" price
+			read -p "è¯·è¾“å…¥å•†å“ä»·æ ¼ï¼š" price
 			if [ "$price" -gt "$num" ]
 			then
-				echo "Ì«´óÁË£¡"
+				echo "å¤ªå¤§äº†ï¼"
 			elif [ "$price" -lt "$num" ]
 			then
-				echo "Ì«Ğ¡ÁË£¡"
+				echo "å¤ªå°äº†ï¼"
 			else
 				echo "prefect!"
 				read -n 1 -p  "Can you guess again ?[y/N]:" a
@@ -169,27 +175,27 @@
 		[ $i -eq 1 ] && break
 	done
 
-11.	Ìßµô²»ÔÊĞíÔ¶³ÌÁ¬½ÓµÄÀ´Ô´IP
+11.	è¸¢æ‰ä¸å…è®¸è¿œç¨‹è¿æ¥çš„æ¥æºIP
 	#!/bin/sh
-	arr[0]=0 #¿ØÖÆÌõ¼ş
-	i=0 #¶¨ÒåÊı×éÆğÊ¼ÏÂ±ê
+	arr[0]=0 #æ§åˆ¶æ¡ä»¶
+	i=0 #å®šä¹‰æ•°ç»„èµ·å§‹ä¸‹æ ‡
 	. /etc/init.d/functions
 
-	IP=`w | awk 'NR>2 {print $1 "@" $3}'` #»ñÈ¡µÇÂ¼user@IP
+	IP=`w | awk 'NR>2 {print $1 "@" $3}'` #è·å–ç™»å½•user@IP
 
-	for Login in `echo $IP | awk '{for(i=1;i<=NF;i++){print $i}}'` #·Ö±ğ°ÑÃ¿¸öuser@IP¸³Öµ¸ø±äÁ¿ Login_IP
+	for Login in `echo $IP | awk '{for(i=1;i<=NF;i++){print $i}}'` #åˆ†åˆ«æŠŠæ¯ä¸ªuser@IPèµ‹å€¼ç»™å˜é‡ Login_IP
 	do
-		Login_IP=`echo $Login | awk -F@ '{print $2}'`	#ÌáÈ¡µÇÂ¼IP
-		ctrl=0 #¿ØÖÆÌõ¼ş
-		for Allow_IP in 192.168.11.6{2..6}  #ÔÊĞíµÇÂ¼µÄIPÁĞ±í
+		Login_IP=`echo $Login | awk -F@ '{print $2}'`	#æå–ç™»å½•IP
+		ctrl=0 #æ§åˆ¶æ¡ä»¶
+		for Allow_IP in 192.168.11.6{2..6}  #å…è®¸ç™»å½•çš„IPåˆ—è¡¨
 		do
-			if [ "$Login_IP" == "-" ] #ÅĞ¶ÏÊÇ·ñÊÇ±¾µØµÇÂ¼
+			if [ "$Login_IP" == "-" ] #åˆ¤æ–­æ˜¯å¦æ˜¯æœ¬åœ°ç™»å½•
 			then
 				user=`echo $Login | awk -F@ '{print $1}'` 
 				action "${user}@localhost"
 				ctrl=1
 				break
-			elif [ "$Login_IP" == "$Allow_IP" ] #ÅĞ¶ÏÔ¶³ÌµÇÂ¼µÄIPÊÇ·ñÔÚÔÊĞíÁĞ±í
+			elif [ "$Login_IP" == "$Allow_IP" ] #åˆ¤æ–­è¿œç¨‹ç™»å½•çš„IPæ˜¯å¦åœ¨å…è®¸åˆ—è¡¨
 			then
 				action "$Login" 
 				ctrl=1
@@ -200,14 +206,14 @@
 		done
 		while [ $ctrl -eq 0 ] 
 		do
-			arr[$i]=$Login_IP	#°Ñ²»ÔÊĞíµÇÂ¼µÄuser@IPĞ´ÈëarrÊı×éÖĞ
-			arr1[$i]=$Login		#°Ñ²»ÔÊĞíµÇÂ¼µÄIPĞ´Èëarr1Êı×éÖĞ£¬·½±ãºóÃæÌßµô²»ÔÊĞíµÄÀ´Ô´IP
+			arr[$i]=$Login_IP	#æŠŠä¸å…è®¸ç™»å½•çš„user@IPå†™å…¥arræ•°ç»„ä¸­
+			arr1[$i]=$Login		#æŠŠä¸å…è®¸ç™»å½•çš„IPå†™å…¥arr1æ•°ç»„ä¸­ï¼Œæ–¹ä¾¿åé¢è¸¢æ‰ä¸å…è®¸çš„æ¥æºIP
 			let "i++"
 			break
 		done
 	done
 
-#´òÓ¡²»ÔÊĞíµÇÂ¼µÄuser@IPµØÖ·
+#æ‰“å°ä¸å…è®¸ç™»å½•çš„user@IPåœ°å€
 	if [ "${arr[0]}" != "0" ]
 	then
 		echo -e "\e[31mNot allow login IP:\e[0m"
@@ -218,73 +224,73 @@
 
 	echo -e "\nStart kill not allow login IP, Pls. wait..."
 	
-	for Deny_IP in ${arr[*]} #É±ËÀ²»ÔÊĞíµÇÂ¼µÄÀ´Ô´IP
+	for Deny_IP in ${arr[*]} #æ€æ­»ä¸å…è®¸ç™»å½•çš„æ¥æºIP
 	do
 		PTS=`w | grep "$Deny_IP" |awk '{print $2}'`
 		pkill -KILL -t $PTS
 	done
 	sleep 1
-	echo "restart detection Login IP:" #ÖØĞÂ¼ì²âµÇÂ¼µÄÀ´Ô´IP
+	echo "restart detection Login IP:" #é‡æ–°æ£€æµ‹ç™»å½•çš„æ¥æºIP
 	sleep 1
 	echo
 	sh $0
 	fi
-	ÊµÏÖĞ§¹û
-		root@192.168.11.62                                         [È·¶¨]
-		root@192.168.11.62                                         [È·¶¨]
+	å®ç°æ•ˆæœ
+		root@192.168.11.62                                         [ç¡®å®š]
+		root@192.168.11.62                                         [ç¡®å®š]
 		Not allow login IP:
 			root@192.168.11.162
 
 		Start kill not allow login IP, Pls wait...
 		restart detection Login IP:
 
-		root@192.168.11.62                                         [È·¶¨]
-		root@192.168.11.62                                         [È·¶¨]
+		root@192.168.11.62                                         [ç¡®å®š]
+		root@192.168.11.62                                         [ç¡®å®š]
 	
-12.	ÅúÁ¿×Ô¶¨ÒåÌí¼ÓÓÃ»§£¬²¢ÇÒĞÂÓÃ»§ÈıÌìÄÚĞŞ¸ÄÃÜÂë
+12.	æ‰¹é‡è‡ªå®šä¹‰æ·»åŠ ç”¨æˆ·ï¼Œå¹¶ä¸”æ–°ç”¨æˆ·ä¸‰å¤©å†…ä¿®æ”¹å¯†ç 
 	#!/bin/bash
 
-	read -p "ÇëÊäÈëÓÃ»§Ãû£º" Name
-	read -p "ÇëÊäÈë´´½¨ÓÃ»§µÄÊıÁ¿£º" num
-	read -p "ÇëÊäÈëÓÃ»§¼ÒÄ¿Â¼Ç°×º£º" home 
+	read -p "è¯·è¾“å…¥ç”¨æˆ·åï¼š" Name
+	read -p "è¯·è¾“å…¥åˆ›å»ºç”¨æˆ·çš„æ•°é‡ï¼š" num
+	read -p "è¯·è¾“å…¥ç”¨æˆ·å®¶ç›®å½•å‰ç¼€ï¼š" home 
 	ADD=`which useradd`
 
-	[ -z "$Name" ] && echo -e "\e[31mÓÃ»§Ãû²»ÄÜÎª¿Õ\e[0m" && exit 
+	[ -z "$Name" ] && echo -e "\e[31mç”¨æˆ·åä¸èƒ½ä¸ºç©º\e[0m" && exit 
 	Num=`echo $num | sed 's/[0-9]//g'`
-	[ -n "$Num" ] && echo -e "\e[31mÓÃ»§ÊıÁ¿¶¨Òå´íÎó\e[0m" && exit 
+	[ -n "$Num" ] && echo -e "\e[31mç”¨æˆ·æ•°é‡å®šä¹‰é”™è¯¯\e[0m" && exit 
 	for i in `seq $num`
 	do
 		unset name
 		name="$Name$i"
-		Home_Dir="/home/$home"$name #ÓÃ»§¼ÒÄ¿Â¼
-		$ADD $name -d $Home_Dir >>/dev/null #´´½¨ÓÃ»§
+		Home_Dir="/home/$home"$name #ç”¨æˆ·å®¶ç›®å½•
+		$ADD $name -d $Home_Dir >>/dev/null #åˆ›å»ºç”¨æˆ·
 
 		if [ $? -eq 0 ] 
 		then
 			echo "123456" | passwd --stdin $name &>>/dev/null
-			sed -i '/'$name'/s/99999/3/' /etc/shadow #ÓÃ»§ÈıÌìºóĞŞ¸ÄÃÜÂë
-			echo -e "ÕËºÅ£º$name\tÃÜÂë£º123456"
+			sed -i '/'$name'/s/99999/3/' /etc/shadow #ç”¨æˆ·ä¸‰å¤©åä¿®æ”¹å¯†ç 
+			echo -e "è´¦å·ï¼š$name\tå¯†ç ï¼š123456"
 		fi
 	done
 	
-	ÊµÏÖĞ§¹û
-		ÇëÊäÈëÓÃ»§Ãû£ºlcs
-		ÇëÊäÈë´´½¨ÓÃ»§µÄÊıÁ¿£º2
-		ÇëÊäÈëÓÃ»§¼ÒÄ¿Â¼Ç°×º£ºL_
-		ÕËºÅ£ºlcs1	ÃÜÂë£º123456
-		ÕËºÅ£ºlcs2	ÃÜÂë£º123456
+	å®ç°æ•ˆæœ
+		è¯·è¾“å…¥ç”¨æˆ·åï¼šlcs
+		è¯·è¾“å…¥åˆ›å»ºç”¨æˆ·çš„æ•°é‡ï¼š2
+		è¯·è¾“å…¥ç”¨æˆ·å®¶ç›®å½•å‰ç¼€ï¼šL_
+		è´¦å·ï¼šlcs1	å¯†ç ï¼š123456
+		è´¦å·ï¼šlcs2	å¯†ç ï¼š123456
 	
-		ÇëÊäÈëÓÃ»§Ãû£ºlcs
-		ÇëÊäÈë´´½¨ÓÃ»§µÄÊıÁ¿£º3
-		ÇëÊäÈëÓÃ»§¼ÒÄ¿Â¼Ç°×º£ºL_
+		è¯·è¾“å…¥ç”¨æˆ·åï¼šlcs
+		è¯·è¾“å…¥åˆ›å»ºç”¨æˆ·çš„æ•°é‡ï¼š3
+		è¯·è¾“å…¥ç”¨æˆ·å®¶ç›®å½•å‰ç¼€ï¼šL_
 		useradd: user 'lcs1' already exists
 		useradd: user 'lcs2' already exists
-		ÕËºÅ£ºlcs3	ÃÜÂë£º123456
-13.	º¯Êı´«²Î
+		è´¦å·ï¼šlcs3	å¯†ç ï¼š123456
+13.	å‡½æ•°ä¼ å‚
 	#!/bin/bash
 	half () {
-		n=$1 #²ÎÊı1
-		s=$2 #²ÎÊı2
+		n=$1 #å‚æ•°1
+		s=$2 #å‚æ•°2
 		let "n=n/s"
 		echo "\$n=$n"
 	}
@@ -292,5 +298,5 @@
 	m=$1
 	z=5
 	echo "\$m=$m"
-	half $m $z  #´«²Î
+	half $m $z  #ä¼ å‚
 	echo "\$m=$m"
