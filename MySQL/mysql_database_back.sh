@@ -1,16 +1,24 @@
+#########################################################################
+# File Name: mysql_database_back.sh
+# Author: lcs
+# mail: liuchengsheng95@qq.com
+# Created Time: 2018-11-07 14:51:54
+#########################################################################
+
 #!/bin/bash
-#coding:utf-8
-#mysql分库备份
-PWD="/data/backup/"
-EXPIRE=30
-mkdir -p /data/backup/$(date +%F)
-USER=root
-PASS=123456
-LOGIN="mysql -u$USER -p$PASS"
-MYDUMP="mysqldump -u$USER -p$PASS"
-for database in `$LOGIN -e "show databases;" | egrep -v "mysql|*schema|Database|*found|backup"`
+# MySQL 分库备份,备份文件保留7天
+
+BACKDIR="/data/backup/"
+EXPIRE=7
+USER="root"
+PASS="123456"
+HOST="127.0.0.1"
+LOGIN="mysql -u$USER -p$PASS -h $HOST"
+DUMP="mysqldump -u$USER -p$PASS -h $HOST"
+
+mkdir -p ${BACKDIR}$(date +%F)
+for database in $($LOGIN -e "show databases;" | egrep -v "mysql|*schema|Database|*found|backup")
 do
-    #$MYDUMP $database | gzip >/data/backup/$(date +%F)/${database}_$(date +%F).bak.gz
-    $MYDUMP $database | gzip >/data/backup/$(date +%F)/${database}.bak.gz
+    $DUMP $database | gzip >/data/backup/$(date +%F)/${database}.gz
 done
-find $PWD -type d  -mtime +${EXPIRED} -exec rm -rf {} \;
+find $BACKDIR -type d  -mtime +${EXPIRE} -exec rm -rf {} \;
