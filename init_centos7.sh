@@ -304,6 +304,7 @@ vim_zsh_config(){
 cd /usr/src && wget https://github.com/imlcs/zsh/archive/master.zip && unzip master.zip && rm -f master.zip
 cd /usr/src && wget https://github.com/imlcs/vim/archive/master.zip && unzip master.zip && rm -f master.zip
 mv /usr/src/vim-master/.vim /usr/src/vim-master/.vimrc $HOME && rm -fr /usr/src/vim-master
+mv /usr/src/vim-master/shortcut.sh /etc/profile.d/shortcut.sh $HOME && rm -fr /usr/src/vim-master
 mv /usr/src/zsh-master/.zshrc /usr/src/zsh-master/.oh-my-zsh/ $HOME && rm -fr /usr/src/zsh-master/
 chsh -s /bin/zsh 
 }
