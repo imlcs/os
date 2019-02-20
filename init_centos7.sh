@@ -43,7 +43,7 @@ yum makecache && echo y |  yum install epel-release  && yum makecache &>/dev/nul
 # 安装必要支持工具及软件工具
 yum_update(){
 yum update -y &>/dev/null
-yum install -y nmap unzip wget vim lsof xz net-tools iptables-services ntpdate ntp-doc psmisc zsh lrzsz htop ncdu  &>/dev/null
+yum install -y tree git nmap unzip wget vim lsof xz net-tools iptables-services ntpdate ntp-doc psmisc zsh lrzsz htop ncdu  &>/dev/null
 }
 
 # 设置时间同步 set time
@@ -53,7 +53,7 @@ timedatectl set-timezone Asia/Shanghai
 /usr/sbin/hwclock --systohc
 /usr/sbin/hwclock -w
 cat > /var/spool/cron/root << EOF
-10 0 * * * /usr/sbin/ntpdate 0.cn.pool.ntp.org > /dev/null 2>&1
+10 0 * * * /usr/sbin/ntpdate times.aliyun.com > /dev/null 2>&1
 * * * * */1 /usr/sbin/hwclock -w > /dev/null 2>&1
 EOF
 chmod 600 /var/spool/cron/root
@@ -231,6 +231,8 @@ PubkeyAuthentication yes
 AuthorizedKeysFile	.ssh/authorized_keys
 PasswordAuthentication yes
 ChallengeResponseAuthentication no
+GSSAPIAuthentication no
+GSSAPICleanupCredentials no
 UsePAM yes
 UseDNS no
 X11Forwarding yes
@@ -250,8 +252,6 @@ ipv6_config(){
 echo "NETWORKING_IPV6=no">/etc/sysconfig/network
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 echo 1 > /proc/sys/net/ipv6/conf/default/disable_ipv6
-echo "127.0.0.1   localhost   localhost.localdomain">/etc/hosts
-#sed -i 's/IPV6INIT=yes/IPV6INIT=no/g' /etc/sysconfig/network-scripts/ifcfg-enp0s8
 
 
 for line in $(ls -lh /etc/sysconfig/network-scripts/ifcfg-* | awk -F '[ ]+' '{print $9}')  
@@ -264,26 +264,6 @@ fi
 done
 }
 
-
-# 设置历史命令记录格式 history
-history_config(){
-export HISTFILESIZE=100000
-export HISTSIZE=100000
-export PROMPT_COMMAND="history -a"
-export HISTTIMEFORMAT="%Y-%m-%d_%H:%M:%S "
-##export HISTTIMEFORMAT="{\"TIME\":\"%F %T\",\"HOSTNAME\":\"\$HOSTNAME\",\"LI\":\"\$(who -u am i 2>/dev/null| awk '{print \$NF}'|sed -e 's/[()]//g')\",\"LU\":\"\$(who am i|awk '{print \$1}')\",\"NU\":\"\${USER}\",\"CMD\":\""
-cat >>/etc/bashrc<<EOF
-alias vi='vim'
-HISTDIR='/var/log/command.log'
-if [ ! -f \$HISTDIR ];then
-touch \$HISTDIR
-chmod 666 \$HISTDIR
-fi
-export HISTTIMEFORMAT="{\"TIME\":\"%F %T\",\"IP\":\"\$(ip a | grep -E '192.168|172' | head -1 | awk '{print \$2}' | cut -d/ -f1)\",\"LI\":\"\$(who -u am i 2>/dev/null| awk '{print \$NF}'|sed -e 's/[()]//g')\",\"LU\":\"\$(who am i|awk '{print \$1}')\",\"NU\":\"\${USER}\",\"CMD\":\"" 
-export PROMPT_COMMAND='history 1|tail -1|sed "s/^[ ]\+[0-9]\+  //"|sed "s/$/\"}/">> /var/log/command.log'
-EOF
-source /etc/bashrc
-}
 
 # 服务优化设置
 service_config(){
@@ -304,7 +284,7 @@ vim_zsh_config(){
 cd /usr/src && wget https://github.com/imlcs/zsh/archive/master.zip && unzip master.zip && rm -f master.zip
 cd /usr/src && wget https://github.com/imlcs/vim/archive/master.zip && unzip master.zip && rm -f master.zip
 mv /usr/src/vim-master/.vim /usr/src/vim-master/.vimrc $HOME && rm -fr /usr/src/vim-master
-mv /usr/src/vim-master/shortcut.sh /etc/profile.d/shortcut.sh $HOME && rm -fr /usr/src/vim-master
+mv /usr/src/zsh-master/function.sh /etc/profile.d/function.sh $HOME
 mv /usr/src/zsh-master/.zshrc /usr/src/zsh-master/.oh-my-zsh/ $HOME && rm -fr /usr/src/zsh-master/
 chsh -s /bin/zsh 
 }
@@ -332,7 +312,6 @@ main(){
     selinux_config
     sshd_config
     ipv6_config
-    history_config
     service_config
     vim_zsh_config
     done_ok
