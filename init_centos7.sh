@@ -43,7 +43,7 @@ yum makecache && echo y |  yum install epel-release  && yum makecache &>/dev/nul
 # 安装必要支持工具及软件工具
 yum_update(){
 yum update -y &>/dev/null
-yum install -y tree git nmap unzip wget vim lsof xz net-tools iptables-services ntpdate ntp-doc psmisc zsh lrzsz htop ncdu  &>/dev/null
+yum install -y autojump-zsh tree git nmap unzip wget vim lsof xz net-tools iptables-services ntpdate ntp-doc psmisc zsh lrzsz htop ncdu  &>/dev/null
 }
 
 # 设置时间同步 set time
